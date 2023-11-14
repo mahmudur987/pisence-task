@@ -10,6 +10,7 @@ import Image from "next/image";
 
 const Home = () => {
   const [student, setstudent] = useState(null);
+  const [show, setShow] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,7 +28,7 @@ const Home = () => {
     <main className="container mx-auto">
       {/* navbar */}
 
-      <Navbar />
+      <Navbar show={show} setShow={setShow} />
 
       <div className="drawer">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -40,7 +41,8 @@ const Home = () => {
 
           {student && <Attendence student={student} />}
         </div>
-        <div className="drawer-side">
+
+        <div onClick={() => setShow(!show)} className="drawer-side">
           <label
             htmlFor="my-drawer"
             aria-label="close sidebar"
